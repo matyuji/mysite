@@ -1,0 +1,24 @@
+
+<!-- コンテンツ -->
+<form action="./" method="POST" enctype="multipart/form-data">
+    <p>投票をリクエスト</p>
+    <p>
+        リクエスト相手を選ぶ
+        <select name="username">
+            {% for user in users %}
+                <option value="{{ user.username }}">{{ user.username }}</option>
+            {% endfor %}
+        </select>
+    </p>
+    <p>
+        リクエストする投票を選ぶ
+        <select name="question">
+        {% for poll in polls %}
+            <option value="{{ poll.question }}">{{ poll.question }}</option>
+        {% endfor %}
+    </select>
+    </p>
+    <input type="submit" value="リクエストする" />
+</form>
+<hr/>
+<p>><a href= "/mypage/home/{{ username }}/">マイページへ</a></p>

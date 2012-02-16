@@ -1,8 +1,35 @@
+{% extends "mypage/base.html" %}
+{% block main %}
 
 <!-- コンテンツ -->
 <h1><b>{{ username }}</b>のページ</h1>
 <img border="0" src="{{ MEDIA_URL }}{{ photoname }}" width="128" height="128" alt="写真">
-<a href="/mypage/photo_upload/">写真をアップロード</a>
+<a href="/mypage/photo_upload/">顔写真をアップロード</a>
+<p><a href="/mypage/vote_request/">投票をリクエストする</a></p>
+<hr/>
+<p>
+    来ているリクエスト
+    <ul>
+        {% for user in users %}
+            <li>{{ user.username }}</li>
+        {% endfor %}
+    </ul>
+    <table border="1" width="500" cellspacing="0" cellpadding="5" bordercolor="#333333">
+        <tr>
+            <th bgcolor="#EE0000"><font color="#FFFFFF">時間</font></th>
+            <th bgcolor="#EE0000" width="150"><font color="#FFFFFF">リクエスト者</font></th>
+            <th bgcolor="#EE0000" width="200"><font color="#FFFFFF">投票対象</font></th>
+        </tr>
+            {% for req in reqs %}
+                <tr>
+                <td bgcolor="#FFFFFF" align="right" nowrap>{{ req.pub_date }}</td>
+                <td bgcolor="#FFFFFF" align="right" nowrap>{{ req.req_user }}</td>
+                <td bgcolor="#FFFFFF" align="right" nowrap>{{ req.question }}</td>
+                </tr>
+            {% endfor %}
+    </table></p>
 <hr/>
 
-<p><a href="/top/">戻る</a><p>
+<p><a href="/top/">戻る</a></p>
+
+{% endblock %}
