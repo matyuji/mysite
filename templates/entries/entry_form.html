@@ -16,7 +16,7 @@
 
     {% endfor %}
 {% endif %}
-
+<h3> ユーザ名：{{ username }}  </h3>
 <div class="validation">
     <form action="." method="post" accept-charset="utf-8">
         <label for="id_title">タイトル</label>{{ form.title }}
@@ -24,6 +24,7 @@
         <label for="id_content">内容</label>{{ form.content }}
         {% if form.content.errors %} <p><error>  {{ form.content.errors|join:", "}}</error></p><br/><br/>{% endif %}
         <p><input type="submit" value="保存" /></p><br/>
+        <input type="hidden" name="user" value="{{ user_id }}">
     </form>
 </div>
 

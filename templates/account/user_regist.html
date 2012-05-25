@@ -1,0 +1,26 @@
+
+<div class="validation">
+
+    {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+    <br />
+
+    <form action="." method="post">
+        <p>ユーザー名
+        <input type="text" name="name"></p><br>
+        <p>パスワード
+        <input type="password" name="pass"></p><br>
+        <p>パスワード(確認)
+        <input type="password" name="pass2"></p><br>
+        <input type="submit" value="登録"/>
+<!--        <input type="hidden" name="next" value="{{ next }}"/>
+-->
+    </form>
+
+</div>
+
+<br/>
+<br/>
+
+<dd div class="operation">
+    <a href= "../login/">ログイン画面に戻る</a>
+</dd>

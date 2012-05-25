@@ -4,11 +4,20 @@
 
 <dt>
     タイトル: {{ object.title }}  <br/>
-    コメント: {{ object.content}} <br/>
+    本文: {{ object.content}} <br/>
+    <a href="/entries/update/{{ object.id }}">編集</a>
+    <a href="/entries/delete/{{ object.id }}">削除</a>
+    <a href="/entries/">一覧に戻る</a>
 </dt><br/>
-
-<a href="/entries/update/{{ object.id }}">編集</a>
-<a href="/entries/delete/{{ object.id }}">削除</a>
-<a href="/entries/">一覧に戻る</a>
+    {% load comments %}
+    <hr>
+    <h3>コメント</h3>
+    {% get_comment_list for object as comment_list %}
+    {% for comment in comment_list %}
+        <pre>
+{{ comment }}
+        </pre>
+    {% endfor %}
+<hr>
 
 {% endblock %}

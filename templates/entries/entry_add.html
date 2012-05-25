@@ -1,7 +1,7 @@
 
 {% include 'account/auth.html' %}
 
-{% if not user.is_anonymous %}
+{% if not request.user.is_anonymous %}
     <dd div class="operation">
         <a href= "/entries/create/">記事の追加</a>
     </dd><hr/>

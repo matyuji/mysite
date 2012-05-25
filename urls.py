@@ -34,6 +34,7 @@ urlpatterns += patterns('',
     ( r'^account/', include('account.urls') ),
     # mypage : http://127.0.0.1:8000/mypage/
     ( r'^mypage/', include('mypage.urls') ),
+    ( r'^comments/', include('django.contrib.comments.urls')),
 )
 
 #--------- CSS ---------

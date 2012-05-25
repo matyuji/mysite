@@ -1,7 +1,8 @@
 
 <div class="validation">
 
-    <p><error>
+    {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+    <br />  <p><error>
         {% if form.errors %}
             正しいユーザ名とパスワードを入力してください (大文字小文字は区別します) 。
         {% endif %}
@@ -17,8 +18,10 @@
     </form>
 
 </div>
+<hr/>
 
-<br/>
+<a href= "../user_regist">ユーザー登録</a>
+
 <br/>
 
 <dd div class="operation">
