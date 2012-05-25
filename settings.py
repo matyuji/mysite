@@ -157,7 +157,7 @@ LOGGING = {
 }
 
 LOGIN_REDIRECT_URL = "/account/"
-LOGIN_URL = "/account/login/"
+#LOGIN_URL = "/account/login/"
 
 from django.conf import global_settings
 TEMPLATE_CONTEXT_PROCESSORS = global_settings.TEMPLATE_CONTEXT_PROCESSORS + (
