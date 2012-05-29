@@ -131,7 +131,8 @@ INSTALLED_APPS = (
     'mysite',
     'mysite.polls',
     'mysite.entries',
-    'mysite.mypage'
+    'mysite.mypage',
+    'mysite.oauth',
     )
 
 # A sample logging configuration. The only tangible logging

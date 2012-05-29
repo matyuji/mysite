@@ -1,8 +1,11 @@
 # -*- coding: utf-8 -*-
 #
 from django.shortcuts import get_object_or_404, render_to_response
+from tweepy.error import TweepError
 from models import Entry, EntryForm
 from django.http import HttpResponseRedirect
+from oauth.views import CONSUMER_KEY, CONSUMER_SECRET
+import tweepy
 
 def object_list( request):
     list = None
@@ -17,6 +20,15 @@ def create_object( request, model, post_save_redirect):
         new_data =request.POST.copy()
         form = EntryForm(new_data)
         if form.is_valid():
+            auth = tweepy.OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET)
+            auth.set_access_token(request.session.get('key'), request.session.get('secret'))
+            api = tweepy.API(auth_handler=auth)
+
+            tweet = request.POST["content"]
+            try:
+                api.update_status(tweet)
+            except TweepError: pass
+
             obj = form.save();
             return HttpResponseRedirect( obj.get_absolute_url())
 
