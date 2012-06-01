@@ -20,7 +20,7 @@ def regist(request):
         name = request.POST['name']
         mail = ''#request.POST['mail']
         password = request.POST['pass']
-        password2 = request.POST['pass2']
+        confirm_password = request.POST['pass2']
 
     except KeyError:
         return render_to_response('account/user_regist.html', context_instance=RequestContext(request) )
@@ -34,7 +34,7 @@ def regist(request):
         except:
             return HttpResponseRedirect( '../user_regist', )
         else:
-            if password != password2:
+            if password != confirm_password:
                 return render_to_response('account/user_regist.html', {
                     'error_message' : "パスワードが一致しません。",
                     }, context_instance=RequestContext(request) )

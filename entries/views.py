@@ -20,15 +20,16 @@ def create_object( request, model, post_save_redirect):
         new_data =request.POST.copy()
         form = EntryForm(new_data)
         if form.is_valid():
-            auth = tweepy.OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET)
-            auth.set_access_token(request.session.get('key'), request.session.get('secret'))
-            api = tweepy.API(auth_handler=auth)
-
-            tweet = request.POST["content"]
-            try:
-                api.update_status(tweet)
-            except TweepError: pass
-
+            key = request.session.get('key')
+            secret = request.session.get('secret')
+            if (key != None) and (secret != None):
+                auth = tweepy.OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET)
+                auth.set_access_token( key, secret)
+                api = tweepy.API(auth_handler=auth)
+                tweet = request.POST["content"]
+                try:
+                    api.update_status(tweet)
+                except TweepError: pass
             obj = form.save();
             return HttpResponseRedirect( obj.get_absolute_url())
 
