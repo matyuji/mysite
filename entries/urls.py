@@ -26,10 +26,14 @@ urlpatterns = patterns('',
     ( r'^create/$', 'entries.views.create_object',
           {'model':Entry, 'post_save_redirect':'/entries/'} ),
     # 詳細閲覧
-    ( r'^detail/(?P<object_id>\d+)/$', 'django.views.generic.list_detail.object_detail', info_dict ),
+#    ( r'^detail/(?P<object_id>\d+)/$', 'django.views.generic.list_detail.object_detail', info_dict ),
+    ( r'^detail/(?P<object_id>\d+)/$', 'entries.views.object_detail'),
     # 更新
-    ( r'^update/(?P<object_id>\d+)/$', 'django.views.generic.create_update.update_object', {'model':Entry } ),
+#    ( r'^update/(?P<object_id>\d+)/$', 'django.views.generic.create_update.update_object', {'model':Entry } ),
+    ( r'^update/(?P<object_id>\d+)/$', 'entries.views.update_object', {'model':Entry } ),
     # 削除
     ( r'^delete/(?P<object_id>\d+)/$', 'django.views.generic.create_update.delete_object',
          { 'model':Entry, 'post_delete_redirect':'/entries/' } ),
+#     ( r'^delete/(?P<object_id>\d+)/$', 'entries.views.delete_object',
+#        { 'model':Entry, 'post_delete_redirect':'/entries/' } ),
 )

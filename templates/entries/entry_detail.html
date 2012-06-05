@@ -4,20 +4,32 @@
 
 <dt>
     タイトル: {{ object.title }}  <br/>
-    本文: {{ object.content}} <br/>
+    本文: <pre>{{ object.content}}
+</pre>
+    <br/>
     <a href="/entries/update/{{ object.id }}">編集</a>
     <a href="/entries/delete/{{ object.id }}">削除</a>
     <a href="/entries/">一覧に戻る</a>
 </dt><br/>
-    {% load comments %}
-    <hr>
+
+<hr>
     <h3>コメント</h3>
-    {% get_comment_list for object as comment_list %}
-    {% for comment in comment_list %}
-        <pre>
-{{ comment }}
-        </pre>
+    {% for comm in comm_list %}
+        <pre>{{ comm.user_name }}:<br/>{{ comm.comment }}</pre>
     {% endfor %}
 <hr>
+    <div class="validation">
+        <form action="." method="post" accept-charset="utf-8">
+            <label for="user_name">名前</label>{{ form.user_name }}
+            {% if form.user_name.errors %} <p><error> {{ form.user_name.errors|join:", "}}</error></p><br/><br/>{% endif %}
+            <label for="user_email">メール</label>{{ form.user_email }}
+            {% if form.user_email.errors %} <p><error>  {{ form.user_email.errors|join:", "}}</error></p><br/><br/>{% endif %}
+            <label for="user_url">URL</label>{{ form.user_url}}
+            {% if form.user_url.errors %} <p><error>  {{ form.user_url.errors|join:", "}}</error></p><br/><br/>{% endif %}
+            <label for="comment">コメント文</label>{{ form.comment}}
+            {% if form.comment.errors %} <p><error>  {{ form.comment.errors|join:", "}}</error></p><br/><br/>{% endif %}
+            <p><input type="submit" value="コメント" /></p><br/>
+        </form>
+    </div>
 
 {% endblock %}
